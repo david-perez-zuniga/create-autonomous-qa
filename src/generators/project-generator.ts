@@ -46,6 +46,14 @@ export function createProject(projectName: string, options: GeneratorOptions) {
 
     packageJson.version = "0.1.0";
 
+    if (options.bun) {
+    packageJson.packageManager ="bun@latest";
+    }
+
+    if (options.pnpm) {
+    packageJson.packageManager ="pnpm@12.14.0";
+    }
+
     fs.writeFileSync(
       packageJsonPath,
       JSON.stringify(

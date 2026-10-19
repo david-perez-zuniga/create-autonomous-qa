@@ -1,14 +1,26 @@
+import { Command } from "commander";
 import { createProject } from "../generators/project-generator";
 
-console.log("🚀 Autonomous QA CLI");
+const program = new Command();
 
-console.log(process.argv);
+program
+  .name("create-autonomous-qa")
+  .description(
+    "CLI para generar proyectos de QA autónomo con Playwright"
+  )
+  .version("0.1.0");
 
-const projectName = process.argv[2];
+program
+  .argument("<project-name>", "Nombre del proyecto")
+  .option("--bun", "Configurar proyecto para Bun")
+  .option("--pnpm", "Configurar proyecto para PNPM")
+  .action((projectName: string, options) => {
+    console.log("🚀 Creating Autonomous QA Project\n");
 
-if (!projectName) {
-  console.error("❌ Debes indicar un nombre");
-  process.exit(1);
-}
+    console.log("Options:");
+    console.log(options);
 
-createProject(projectName);
+    createProject(projectName);
+  });
+
+program.parse();

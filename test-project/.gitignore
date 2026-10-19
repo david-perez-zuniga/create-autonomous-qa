@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Playwright
+playwright-report/
+test-results/
+
+# Generated QA Artifacts
+qa-results/evidence/
+qa-results/playwright/execution-results/
+
+# OS
+.DS_Store
+Thumbs.db

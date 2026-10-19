@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { GeneratorOptions } from "../types/generator-options";
 
-export function createProject(projectName: string) {
+export function createProject(projectName: string, options: GeneratorOptions) {
   const targetDir = path.join(process.cwd(), projectName);
-
   const templateDir = path.join(
     process.cwd(),
     "template"

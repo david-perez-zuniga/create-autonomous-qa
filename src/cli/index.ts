@@ -1,6 +1,7 @@
 import { Command } from "commander";
 import { createProject } from "../generators/project-generator";
 
+
 const program = new Command();
 
 program
@@ -20,7 +21,11 @@ program
     console.log("Options:");
     console.log(options);
 
-    createProject(projectName);
+    createProject(projectName, {
+  bun: options.bun,
+  pnpm: options.pnpm
+  });
+
   });
 
 program.parse();

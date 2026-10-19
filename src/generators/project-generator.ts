@@ -1,10 +1,19 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 export function createProject(projectName: string) {
-  const target = path.join(process.cwd(), projectName);
+  const targetDir = path.join(process.cwd(), projectName);
 
-  fs.mkdirSync(target, { recursive: true });
+  const templateDir = path.join(
+    process.cwd(),
+    "template"
+  );
 
-  console.log(`✅ Proyecto creado: ${target}`);
+  fs.cpSync(
+    templateDir,
+    targetDir,
+    { recursive: true }
+  );
+
+  console.log(`✅ Proyecto creado: ${targetDir}`);
 }

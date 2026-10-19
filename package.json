@@ -1,30 +1,47 @@
 {
   "name": "create-autonomous-qa",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-      "dev": "tsx src/cli/index.ts",
-      "test": "tsc",
-      "start": "node dist/cli/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.14.0",
-      "onFail": "download"
-    }
-  },
-  "packageManager": "pnpm@12.14.0",
+  "version": "0.1.0",
+  "description": "CLI para generar proyectos de QA autónomo con Playwright y agentes IA",
   "type": "module",
+
+  "bin": {
+    "create-autonomous-qa": "./dist/cli/index.js"
+  },
+
+  "scripts": {
+    "dev": "tsx src/cli/index.ts",
+    "build": "tsc",
+    "start": "node dist/cli/index.js",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm build"
+  },
+
+  "keywords": [
+    "playwright",
+    "qa",
+    "automation",
+    "testing",
+    "ai",
+    "opencode",
+    "typescript",
+    "cli"
+  ],
+
+  "author": "David Humberto Perez Zuniga",
+  "license": "MIT",
+
+  "engines": {
+    "node": ">=20"
+  },
+
+  "packageManager": "pnpm@12.14.0",
+
   "devDependencies": {
     "@types/node": "^26.6.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
+
   "dependencies": {
     "commander": "^15.0.0"
   }

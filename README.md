@@ -1,5 +1,13 @@
 # create-autonomous-qa
 
+[![npm version](https://img.shields.io/npm/v/create-autonomous-qa.svg)](https://www.npmjs.com/package/create-autonomous-qa)
+[![npm downloads](https://img.shields.io/npm/dm/create-autonomous-qa.svg)](https://www.npmjs.com/package/create-autonomous-qa)
+[![CI](https://github.com/david-perez-zuniga/create-autonomous-qa/actions/workflows/ci.yml/badge.svg)](https://github.com/david-perez-zuniga/create-autonomous-qa/actions/workflows/ci.yml)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-5FA04E.svg)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6.svg)](https://www.typescriptlang.org/)
+[![Playwright](https://img.shields.io/badge/Playwright-1.x-2ead33.svg)](https://playwright.dev/)
+
 CLI para generar proyectos de QA autónomo con [Playwright](https://playwright.dev/), TypeScript y agentes de IA.
 
 > 🌐 **Landing page**: [landing page/](./landing%20page/) — sitio estático en Astro con la documentación visual, comandos y features del proyecto.
@@ -154,10 +162,37 @@ npm pack --dry-run
 npm pack
 mkdir -p /tmp/caqa-test && cd /tmp/caqa-test
 npm init -y
-npm install /ruta/a/create-autonomous-qa-0.1.0.tgz
+npm install /ruta/a/create-autonomous-qa-0.2.0.tgz
 npx create-autonomous-qa demo
 ```
 
+## Características
+
+- **Scaffold instantáneo** — Estructura completa de QA en segundos.
+- **pnpm o Bun** — Elige el package manager con `--pnpm` o `--bun`.
+- **Skill de agentes IA** — 9 fases: descubrimiento, reglas, escenarios, casos, código, ejecución, evidencias, defectos y reporte.
+- **Seguro por diseño** — Validación de nombres, bloqueo de path traversal, nombres reservados de Windows y rollback completo ante fallos.
+- **Errores claros** — Contrato de salida estable, errores por `stderr` y stack traces con `--debug`.
+- **Multiplataforma** — Probado en Linux, macOS y Windows con Node 20, 22 y 24.
+
+## Estado del proyecto
+
+| Versión | Estado                                                                               |
+| ------- | ------------------------------------------------------------------------------------ |
+| `0.2.0` | Skill real, variables avanzadas, rollback, idempotencia, `CliError` y suite de tests |
+| `0.3.0` | Instalación automática opcional, validación de templates y `--dry-run`               |
+| `0.4.0` | Templates múltiples, marketplace y plugins                                           |
+| `1.0.0` | API estable y framework completo                                                     |
+
+## Contribuir
+
+Las contribuciones son bienvenidas.
+
+1. Haz un fork y crea una rama: `git checkout -b feature/mi-cambio`
+2. Instala dependencias: `pnpm install`
+3. Asegúrate de que todo pasa: `pnpm lint && pnpm typecheck && pnpm test`
+4. Abre un Pull Request describiendo el cambio.
+
 ## Licencia
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) — Copyright (c) David Humberto Perez Zuniga

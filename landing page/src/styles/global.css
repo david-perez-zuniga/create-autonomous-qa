@@ -1,0 +1,42 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  font-feature-settings: "ss01", "ss03", "cv02", "cv11";
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at top, rgba(79, 70, 229, 0.18), transparent 55%),
+    radial-gradient(circle at bottom, rgba(34, 211, 238, 0.12), transparent 60%),
+    #0b1026;
+  color: rgba(248, 250, 252, 0.9);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.grid-overlay {
+  background-size: 40px 40px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at top, black, transparent 70%);
+}
+
+.code-block {
+  background: radial-gradient(circle at top, rgba(79, 70, 229, 0.18), transparent 70%),
+    rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 40px 120px -80px rgba(79, 70, 229, 0.9);
+}

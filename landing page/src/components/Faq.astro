@@ -1,0 +1,61 @@
+---
+const faqs = [
+  {
+    q: "¿La CLI instala dependencias o ejecuta pruebas?",
+    a: "No. create-autonomous-qa solo genera la estructura del proyecto. Después tú decides cuándo instalar dependencias y ejecutar la suite de Playwright, de modo que el scaffold es rápido y predecible.",
+  },
+  {
+    q: "¿Qué package managers soporta?",
+    a: "pnpm (por defecto) y Bun. Usa --pnpm o --bun para fijar el package manager en el package.json generado, en el README y en los comandos de próximos pasos.",
+  },
+  {
+    q: "¿Qué pasa si el directorio ya existe?",
+    a: "La CLI se detiene con un error claro y código de salida 1. Nunca sobrescribe nada: no existe un flag --force por diseño, para no perder trabajo por accidente.",
+  },
+  {
+    q: "¿Qué incluye el proyecto generado?",
+    a: "Playwright config completo, tests de ejemplo, Page Objects, fixtures, estructura de evidencias, .env.example, .gitignore, y la skill de QA autónomo para agentes de IA en .opencode/skills/autonomous-qa/skill.md.",
+  },
+  {
+    q: "¿Puede fallar la generación a medias?",
+    a: "No. Si algo falla durante la copia o la configuración, la CLI hace rollback y elimina el directorio generado para que nunca quede un proyecto incompleto.",
+  },
+  {
+    q: "¿Es compatible con Windows y macOS?",
+    a: "Sí. El CI corre la suite completa en Linux, macOS y Windows con Node 20, 22 y 24, incluyendo validaciones de nombres reservados de Windows y rutas inválidas.",
+  },
+];
+---
+
+<div
+  class="divide-y divide-white/10 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl"
+>
+  {
+    faqs.map((faq) => (
+      <details class="group px-6 py-5 sm:px-8">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left font-medium text-white marker:hidden">
+          <span>{faq.q}</span>
+          <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/15 text-slate-300 transition group-open:rotate-45 group-open:border-indigo-400/60 group-open:text-indigo-300">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 1v12M1 7h12"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </summary>
+        <p class="mt-4 max-w-3xl text-pretty leading-relaxed text-slate-300">
+          {faq.a}
+        </p>
+      </details>
+    ))
+  }
+</div>

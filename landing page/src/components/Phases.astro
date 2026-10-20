@@ -1,0 +1,78 @@
+---
+const phases = [
+  {
+    n: "01",
+    title: "Functional discovery",
+    description:
+      "Recorre la aplicación, detecta rutas, formularios y puntos de entrada para entender el alcance.",
+  },
+  {
+    n: "02",
+    title: "Business rules",
+    description:
+      "Identifica reglas de negocio, validaciones y casos límite que deben cubrirse.",
+  },
+  {
+    n: "03",
+    title: "Scenario generation",
+    description:
+      "Convierte los hallazgos en escenarios legibles y priorizados por riesgo.",
+  },
+  {
+    n: "04",
+    title: "Test case design",
+    description:
+      "Diseña casos de prueba con precondiciones, datos y criterio de éxito.",
+  },
+  {
+    n: "05",
+    title: "Playwright code",
+    description:
+      "Genera código TypeScript con Page Objects, fixtures y suites listas para CI.",
+  },
+  {
+    n: "06",
+    title: "Test execution",
+    description:
+      "Ejecuta la suite con Playwright, reintentos y paralelismo configurables.",
+  },
+  {
+    n: "07",
+    title: "Evidence capture",
+    description:
+      "Guarda screenshots, vídeos, trazas, consola y red como evidencia auditable.",
+  },
+  {
+    n: "08",
+    title: "Defect classification",
+    description:
+      "Clasifica cada fallo por severidad, módulo y tipo de defecto encontrado.",
+  },
+  {
+    n: "09",
+    title: "Report generation",
+    description:
+      "Consolida un reporte final con métricas, defectos y siguiente iteración.",
+  },
+];
+---
+
+<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {
+    phases.map((phase) => (
+      <div
+        class="group relative flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition duration-500 hover:border-cyan-400/50 hover:bg-white/[0.05]"
+      >
+        <span class="font-mono text-sm font-semibold text-indigo-400/80 transition group-hover:text-cyan-300">
+          {phase.n}
+        </span>
+        <div class="flex flex-col gap-2">
+          <h3 class="font-semibold text-white">{phase.title}</h3>
+          <p class="text-sm leading-relaxed text-slate-400">
+            {phase.description}
+          </p>
+        </div>
+      </div>
+    ))
+  }
+</div>

@@ -98,7 +98,7 @@ const stats = [
               <span aria-hidden="true">→</span>
             </a>
             <a
-              href="https://github.com/dhperez/create-autonomous-qa"
+              href="https://github.com/david-perez-zuniga/create-autonomous-qa"
               target="_blank"
               rel="noopener"
               class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-6 py-3 text-sm text-slate-200 backdrop-blur transition hover:-translate-y-0.5 hover:border-indigo-400/60 hover:bg-white/10"
@@ -174,6 +174,7 @@ const stats = [
                   height="16"
                   viewBox="0 0 16 16"
                   fill="none"
+                  data-copy-icon
                   class="shrink-0 text-slate-500 transition group-hover:text-indigo-300 sm:hidden"
                   aria-hidden="true"
                 >
@@ -402,13 +403,28 @@ const stats = [
       if (!command) return;
 
       const label = button.querySelector<HTMLElement>("[data-copy-label]");
+      const icon = button.querySelector<HTMLElement>("[data-copy-icon]");
       const original = label?.textContent ?? "";
 
       try {
         await navigator.clipboard.writeText(command);
-        if (label) label.textContent = "Copiado ✓";
+        if (label) {
+          label.textContent = "Copiado ✓";
+          label.classList.add("opacity-100");
+        }
+        if (icon) {
+          icon.classList.add("text-emerald-400");
+          icon.classList.remove("text-slate-500");
+        }
         setTimeout(() => {
-          if (label) label.textContent = original;
+          if (label) {
+            label.textContent = original;
+            label.classList.remove("opacity-100");
+          }
+          if (icon) {
+            icon.classList.remove("text-emerald-400");
+            icon.classList.add("text-slate-500");
+          }
         }, 1800);
       } catch (error) {
         console.error("No se pudo copiar el comando", error);

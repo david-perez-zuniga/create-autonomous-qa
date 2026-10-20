@@ -53,16 +53,16 @@ Bootstrap básico de proyectos QA con Playwright, pnpm y Bun.
 
 ### Criterios de salida
 
-- [ ] `pnpm build` produce `dist/cli/index.js` ejecutable.
-- [ ] `node dist/cli/index.js demo` genera un proyecto válido.
-- [ ] `--pnpm` y `--bun` configuran `packageManager` correctamente.
-- [ ] `--help` y `--version` funcionan.
-- [ ] El proyecto generado pasa `pnpm install` y `pnpm test` (con `BASE_URL` disponible o test skip).
-- [ ] La estructura generada coincide con FR-003.
-- [ ] Generación < 3 s.
-- [ ] Funciona en Linux, macOS y Windows (CI).
-- [ ] Sin errores no controlados en flujo feliz.
-- [ ] README del repositorio documenta uso.
+- [x] `pnpm build` produce `dist/cli/index.js` ejecutable.
+- [x] `node dist/cli/index.js demo` genera un proyecto válido.
+- [x] `--pnpm` y `--bun` configuran `packageManager` correctamente.
+- [x] `--help` y `--version` funcionan.
+- [x] El proyecto generado pasa `pnpm install` y `pnpm test` (con `BASE_URL` disponible o test skip).
+- [x] La estructura generada coincide con FR-003.
+- [x] Generación < 3 s.
+- [x] Funciona en Linux, macOS y Windows (CI).
+- [x] Sin errores no controlados en flujo feliz.
+- [x] README del repositorio documenta uso.
 
 ### Riesgos
 
@@ -98,13 +98,13 @@ SkillService real, variables avanzadas y mejor UX.
 
 ### Criterios de salida
 
-- [ ] `skill.md` generado cumple SK-01…SK-10.
-- [ ] Salida de consola coincide con el contrato.
-- [ ] Errores usan `stderr` y exit codes documentados.
-- [ ] Rollback verificado con fallo simulado.
-- [ ] Cobertura ≥ 70 %.
-- [ ] `AUTHOR` y `DATE` se resuelven con fallback.
-- [ ] No quedan placeholders en archivos configurados.
+- [x] `skill.md` generado cumple SK-01…SK-10.
+- [x] Salida de consola coincide con el contrato.
+- [x] Errores usan `stderr` y exit codes documentados.
+- [x] Rollback verificado con fallo simulado.
+- [x] Cobertura ≥ 70 %.
+- [x] `AUTHOR` y `DATE` se resuelven con fallback.
+- [x] No quedan placeholders en archivos configurados.
 
 ### Riesgos
 

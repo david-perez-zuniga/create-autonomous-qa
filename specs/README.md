@@ -62,13 +62,13 @@ Especificaciones técnicas de la CLI **Create Autonomous QA**, una herramienta o
 
 | Versión | Estado | Notas |
 |---|---|---|
-| 0.1.0 | En progreso | CLI y generación básica; template incompleto |
+| 0.1.0 | Implementado | CLI, generación completa, template, skill, validación y tests |
 | 0.2.0 | Planificada | Skill real, variables avanzadas, rollback |
 | 0.3.0 | Planificada | Instalación, validación, CI completo |
 | 0.4.0 | Planificada | Templates múltiples, marketplace, plugins |
 | 1.0.0 | Planificada | Framework estable |
 
-> El detalle de lo que falta para completar v0.1.0 está en `08-implementation-gaps.md`.
+> Las brechas de v0.1.0 fueron cerradas. El detalle histórico y el plan de cierre están en `08-implementation-gaps.md` y `../tasks/00-checklist.md`.
 
 ## Definición de terminado
 

@@ -4,7 +4,7 @@ CLI para generar proyectos de QA autónomo con [Playwright](https://playwright.d
 
 ## ¿Qué es?
 
-`create-autonomous-qa` es una herramienta CLI que crea la estructura base de un proyecto de automatización de pruebas en cuestión de segundos. El proyecto generado incluye una estructura lista para usar con Playwright, carpetas para evidencias, reportes, defectos y una *skill* de QA autónomo para agentes de IA.
+`create-autonomous-qa` es una herramienta CLI que crea la estructura base de un proyecto de automatización de pruebas en cuestión de segundos. El proyecto generado incluye una estructura lista para usar con Playwright, carpetas para evidencias, reportes, defectos y una _skill_ de QA autónomo para agentes de IA.
 
 > La CLI **solo genera el proyecto**, no instala dependencias ni ejecuta pruebas. Eso queda a cargo de ti después de la generación.
 
@@ -45,12 +45,13 @@ bunx create-autonomous-qa my-project
 
 ## Opciones
 
-| Opción | Descripción |
-| --- | --- |
-| `--pnpm` | Configura el proyecto para usar pnpm (por defecto) |
-| `--bun` | Configura el proyecto para usar Bun |
-| `-h, --help` | Muestra la ayuda |
-| `-V, --version` | Muestra la versión |
+| Opción          | Descripción                                        |
+| --------------- | -------------------------------------------------- |
+| `--pnpm`        | Configura el proyecto para usar pnpm (por defecto) |
+| `--bun`         | Configura el proyecto para usar Bun                |
+| `--debug`       | Muestra stack traces ante errores inesperados      |
+| `-h, --help`    | Muestra la ayuda                                   |
+| `-V, --version` | Muestra la versión                                 |
 
 ### Ejemplos
 
@@ -130,6 +131,29 @@ pnpm build
 
 # Ejecutar versión compilada
 pnpm start
+
+# Ejecutar tests
+pnpm test
+
+# Cobertura
+pnpm test:coverage
+
+# Lint y formato
+pnpm lint
+pnpm format:check
+
+# Empaquetar y verificar el contenido publicado
+npm pack --dry-run
+```
+
+### Probar el paquete localmente
+
+```bash
+npm pack
+mkdir -p /tmp/caqa-test && cd /tmp/caqa-test
+npm init -y
+npm install /ruta/a/create-autonomous-qa-0.1.0.tgz
+npx create-autonomous-qa demo
 ```
 
 ## Licencia

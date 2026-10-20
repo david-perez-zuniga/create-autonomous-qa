@@ -1,5 +1,7 @@
 # 08 — Brechas de implementación
 
+> **Estado (2026-10-20):** las brechas descritas en este documento fueron cerradas. Ver `../tasks/00-checklist.md` para la verificación y `../tasks/` para el detalle de cada tarea.
+
 ## 8.1 Método
 
 Comparación entre las specs (01–07) y el estado del repositorio en la fecha de este documento.

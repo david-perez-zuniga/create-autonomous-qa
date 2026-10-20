@@ -1,6 +1,8 @@
 export const FILES = {
   packageJson: "package.json",
   readme: "README.md",
+  gitignore: ".gitignore",
+  templateGitignore: "gitignore",
   skill: ".opencode/skills/autonomous-qa/skill.md",
   template: "template",
 } as const;
@@ -25,7 +27,7 @@ export const REQUIRED_TEMPLATE_FILES = [
   "README.md",
   "playwright.config.ts",
   ".env.example",
-  ".gitignore",
+  "gitignore",
   "tests/example.spec.ts",
   ".opencode/skills/autonomous-qa/skill.md",
 ] as const;

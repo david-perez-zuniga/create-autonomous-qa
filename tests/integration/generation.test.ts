@@ -83,6 +83,12 @@ describe("createProject", () => {
         ])
       );
 
+      expect(files).toContain(".gitignore");
+      expect(files).not.toContain("gitignore");
+      expect(
+        await fs.readFile(path.join(result.targetDir, ".gitignore"), "utf8")
+      ).toContain("qa-results/evidence/*");
+
       const packageJson = JSON.parse(
         await fs.readFile(path.join(result.targetDir, "package.json"), "utf8")
       ) as Record<string, unknown>;

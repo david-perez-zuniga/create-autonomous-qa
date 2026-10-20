@@ -49,6 +49,21 @@ function ensureTemplateExists(templateDir: string): void {
   }
 }
 
+function activateTemplateFiles(targetDir: string): void {
+  const source = path.join(targetDir, FILES.templateGitignore);
+  const destination = path.join(targetDir, FILES.gitignore);
+
+  if (!pathExists(source)) {
+    return;
+  }
+
+  if (pathExists(destination)) {
+    fs.rmSync(destination, { force: true });
+  }
+
+  fs.renameSync(source, destination);
+}
+
 export function createProject(
   projectName: string,
   options: GeneratorOptions = {},
@@ -78,6 +93,7 @@ export function createProject(
       force: false,
       errorOnExist: true,
     });
+    activateTemplateFiles(project.targetPath);
   } catch (error) {
     removePath(project.targetPath);
 

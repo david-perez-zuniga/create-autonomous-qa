@@ -3,19 +3,29 @@
   "version": "0.1.0",
   "description": "CLI para generar proyectos de QA autónomo con Playwright y agentes IA",
   "type": "module",
-
   "bin": {
     "create-autonomous-qa": "./dist/cli/index.js"
   },
-
+  "files": [
+    "dist",
+    "template",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "tsx src/cli/index.ts",
     "build": "tsc",
     "start": "node dist/cli/index.js",
     "clean": "rm -rf dist",
-    "prepublishOnly": "pnpm build"
+    "test": "pnpm build && vitest run",
+    "test:coverage": "pnpm build && vitest run --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "prepack": "pnpm build",
+    "prepublishOnly": "pnpm test"
   },
-
   "keywords": [
     "playwright",
     "qa",
@@ -24,24 +34,27 @@
     "ai",
     "opencode",
     "typescript",
-    "cli"
+    "cli",
+    "scaffolding"
   ],
-
   "author": "David Humberto Perez Zuniga",
   "license": "MIT",
-
   "engines": {
     "node": ">=20"
   },
-
   "packageManager": "pnpm@12.14.0",
-
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "eslint": "^10.13.0",
+    "execa": "^10.2.0",
+    "prettier": "^3.9.10",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vitest": "^5.0.5"
   },
-
   "dependencies": {
     "commander": "^15.0.0"
   }

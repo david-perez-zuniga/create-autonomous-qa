@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+template/
+test-project/
+banking-app/
+specs/
+tasks/
+pnpm-lock.yaml

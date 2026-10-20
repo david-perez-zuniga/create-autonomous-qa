@@ -39,6 +39,14 @@
   ],
   "author": "David Humberto Perez Zuniga",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david-perez-zuniga/create-autonomous-qa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/david-perez-zuniga/create-autonomous-qa/issues"
+  },
+  "homepage": "https://github.com/david-perez-zuniga/create-autonomous-qa#readme",
   "engines": {
     "node": ">=20"
   },

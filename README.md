@@ -119,7 +119,7 @@ Si quieres contribuir o ejecutar esta CLI en modo desarrollo:
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/your-org/create-autonomous-qa.git
+git clone https://github.com/david-perez-zuniga/create-autonomous-qa.git
 cd create-autonomous-qa
 
 # Instalar dependencias

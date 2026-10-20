@@ -6,4 +6,6 @@ test-project/
 banking-app/
 specs/
 tasks/
+landing page/
+.opencode/
 pnpm-lock.yaml

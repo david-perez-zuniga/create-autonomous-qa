@@ -12,6 +12,8 @@ export default tseslint.config(
       "specs/**",
       "tasks/**",
       "coverage/**",
+      "landing page/**",
+      ".opencode/**",
     ],
   },
   js.configs.recommended,

@@ -2,6 +2,8 @@
 
 CLI para generar proyectos de QA autónomo con [Playwright](https://playwright.dev/), TypeScript y agentes de IA.
 
+> 🌐 **Landing page**: [landing page/](./landing%20page/) — sitio estático en Astro con la documentación visual, comandos y features del proyecto.
+
 ## ¿Qué es?
 
 `create-autonomous-qa` es una herramienta CLI que crea la estructura base de un proyecto de automatización de pruebas en cuestión de segundos. El proyecto generado incluye una estructura lista para usar con Playwright, carpetas para evidencias, reportes, defectos y una _skill_ de QA autónomo para agentes de IA.

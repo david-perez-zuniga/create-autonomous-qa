@@ -1,4 +1,12 @@
+---
+name: autonomous-qa
+description: Genera casos de prueba, ejecuta Playwright y produce evidencias para QA autónomo.
+---
+
 # Agent Skill: Generador Autónomo de Casos de Prueba, Ejecución Playwright y Generación de Evidencias
+
+> Proyecto: {{PROJECT_NAME}} · Generado por create-autonomous-qa v{{VERSION}} el {{DATE}}.
+> Package manager: {{PACKAGE_MANAGER}} · Instalación: {{INSTALL_COMMAND}} · Tests: {{TEST_COMMAND}}.
 
 ## 0. Inicialización y Preparación del Entorno
 

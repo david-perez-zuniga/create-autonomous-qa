@@ -14,6 +14,9 @@ Autonomous QA project generated with **create-autonomous-qa**.
 {{TEST_COMMAND}}
 ```
 
+Set `BASE_URL` to your application URL before running the tests. The example
+test is skipped automatically when `BASE_URL` is not defined.
+
 ## Project structure
 
 ```text

@@ -2,10 +2,36 @@ node_modules/
 dist/
 .env
 .env.local
+
+# Keep the evidence directory structure but ignore execution artifacts.
 qa-results/evidence/*
 !qa-results/evidence/.gitkeep
+!qa-results/evidence/screenshots/
+qa-results/evidence/screenshots/*
+!qa-results/evidence/screenshots/.gitkeep
+!qa-results/evidence/videos/
+qa-results/evidence/videos/*
+!qa-results/evidence/videos/.gitkeep
+!qa-results/evidence/traces/
+qa-results/evidence/traces/*
+!qa-results/evidence/traces/.gitkeep
+!qa-results/evidence/console/
+qa-results/evidence/console/*
+!qa-results/evidence/console/.gitkeep
+!qa-results/evidence/network/
+qa-results/evidence/network/*
+!qa-results/evidence/network/.gitkeep
+
+# Keep the Playwright output structure but ignore raw results.
 qa-results/playwright/*
 !qa-results/playwright/.gitkeep
+!qa-results/playwright/generated-tests/
+qa-results/playwright/generated-tests/*
+!qa-results/playwright/generated-tests/.gitkeep
+!qa-results/playwright/execution-results/
+qa-results/playwright/execution-results/*
+!qa-results/playwright/execution-results/.gitkeep
+
 playwright-report/
 test-results/
 .DS_Store

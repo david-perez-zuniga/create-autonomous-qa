@@ -34,3 +34,6 @@
 | `pnpm format:check` | OK |
 | `npm pack --dry-run` | incluye `dist/`, `template/`, `LICENSE` y `README.md` |
 | Instalación del tarball en directorio temporal | genera el proyecto correctamente |
+| `pnpm install` + `pnpm test` del proyecto generado | OK (3 tests skipped sin `BASE_URL`) |
+| `bun install` + `bun run test` del proyecto generado | OK |
+| `.gitignore` del proyecto generado | presente; el template se empaqueta como `template/gitignore` y se renombra al generar |

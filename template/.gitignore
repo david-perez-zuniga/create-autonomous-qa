@@ -1,18 +1,13 @@
-# Dependencies
 node_modules/
-
-# Environment
+dist/
 .env
 .env.local
-
-# Playwright
+qa-results/evidence/*
+!qa-results/evidence/.gitkeep
+qa-results/playwright/*
+!qa-results/playwright/.gitkeep
 playwright-report/
 test-results/
-
-# Generated QA Artifacts
-qa-results/evidence/
-qa-results/playwright/execution-results/
-
-# OS
 .DS_Store
 Thumbs.db
+*.log

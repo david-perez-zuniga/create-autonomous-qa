@@ -1,93 +1,152 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import type { GeneratorOptions } from "../types/generator-options";
+import {
+  DEFAULT_PACKAGE_MANAGER_ID,
+  getPackageManager,
+} from "../constants/package-managers.js";
+import type { PackageManagerConfig } from "../constants/package-managers.js";
+import { FILES } from "../constants/files.js";
+import { MESSAGES } from "../constants/messages.js";
+import { CliError, isCliError } from "../errors/cli-error.js";
+import { consoleService } from "../services/console-service.js";
+import type { ConsoleService } from "../services/console-service.js";
+import { updatePackageJson } from "../services/package-json-service.js";
+import { updateReadme } from "../services/readme-service.js";
+import { installSkill } from "../services/skill-service.js";
+import type { GeneratorOptions } from "../types/generator-options.js";
+import type { ProjectNameInfo } from "../types/project-name-info.js";
+import { buildTemplateContext } from "../utils/context.js";
+import {
+  isPermissionError,
+  pathExists,
+  removePath,
+} from "../utils/fs-utils.js";
+import { getTemplateDir } from "../utils/paths.js";
+import { resolveProjectName } from "../utils/project-name.js";
 
-import { updatePackageJson } from "../services/package-json-service";
-import { updateReadme } from "../services/readme-service";
-import { showNextSteps } from "../services/console-service";
+export interface CreateProjectResult {
+  targetDir: string;
+  project: ProjectNameInfo;
+  packageManager: PackageManagerConfig;
+}
 
-import { PACKAGE_MANAGERS } from "../constants/package-managers";
+export interface GeneratorDependencies {
+  console?: ConsoleService;
+}
+
+function resolvePackageManager(
+  options: GeneratorOptions
+): PackageManagerConfig {
+  return getPackageManager(
+    options.packageManager ?? DEFAULT_PACKAGE_MANAGER_ID
+  );
+}
+
+function ensureTemplateExists(templateDir: string): void {
+  if (!pathExists(templateDir) || !fs.statSync(templateDir).isDirectory()) {
+    throw new CliError("E_TEMPLATE_MISSING", MESSAGES.errors.templateMissing);
+  }
+}
 
 export function createProject(
   projectName: string,
-  options: GeneratorOptions
-) {
-  const targetDir = path.join(
-    process.cwd(),
-    projectName
-  );
+  options: GeneratorOptions = {},
+  dependencies: GeneratorDependencies = {}
+): CreateProjectResult {
+  const cwd = options.cwd ?? process.cwd();
+  const templateDir = options.templateDir ?? getTemplateDir();
+  const output = dependencies.console ?? consoleService;
+  const project = resolveProjectName(projectName, cwd);
+  const packageManager = resolvePackageManager(options);
 
-  const templateDir = path.join(
-    process.cwd(),
-    "template"
-  );
-
-  if (fs.existsSync(targetDir)) {
-    console.error(
-      `❌ El directorio "${projectName}" ya existe`
+  if (pathExists(project.targetPath)) {
+    throw new CliError(
+      "E_DIR_EXISTS",
+      MESSAGES.errors.dirExists(project.projectPath)
     );
-
-    process.exit(1);
   }
 
-  console.log("🚀 Creando proyecto...");
+  ensureTemplateExists(templateDir);
 
-  // Copiar template
-  fs.cpSync(
-    templateDir,
-    targetDir,
-    {
-      recursive: true
+  output.banner();
+
+  try {
+    fs.mkdirSync(path.dirname(project.targetPath), { recursive: true });
+    fs.cpSync(templateDir, project.targetPath, {
+      recursive: true,
+      force: false,
+      errorOnExist: true,
+    });
+  } catch (error) {
+    removePath(project.targetPath);
+
+    if (isPermissionError(error)) {
+      throw new CliError(
+        "E_PERMISSION",
+        MESSAGES.errors.permission(project.targetPath)
+      );
     }
-  );
 
-  console.log("✅ Template copiado");
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new CliError("E_COPY_FAILED", MESSAGES.errors.copyFailed(detail), {
+      cause: error,
+    });
+  }
 
-  // Resolver package manager
-  const packageManager = options.bun
-    ? PACKAGE_MANAGERS.BUN
-    : options.pnpm
-      ? PACKAGE_MANAGERS.PNPM
-      : undefined;
+  output.success(MESSAGES.templateCopied);
 
-  // Configurar package.json
-  const packageJsonPath = path.join(
-    targetDir,
-    "package.json"
-  );
+  const context = buildTemplateContext({
+    project,
+    packageManager,
+    cwd,
+  });
 
-  updatePackageJson(
-    packageJsonPath,
-    projectName,
-    packageManager
-  );
+  try {
+    updatePackageJson({
+      packageJsonPath: path.join(project.targetPath, FILES.packageJson),
+      packageName: project.packageName,
+      packageManager,
+    });
 
-  console.log(
-    "✅ package.json configurado"
-  );
+    output.success(MESSAGES.packageJsonConfigured);
 
-  // Configurar README
-  const readmePath = path.join(
-    targetDir,
-    "README.md"
-  );
+    updateReadme({
+      readmePath: path.join(project.targetPath, FILES.readme),
+      context,
+    });
 
-  updateReadme(
-    readmePath,
-    projectName
-  );
+    output.success(MESSAGES.readmeConfigured);
 
-  console.log(
-    "✅ README configurado"
-  );
+    installSkill({
+      targetDir: project.targetPath,
+      templateDir,
+      context,
+    });
 
-  console.log(
-    `✅ Proyecto creado: ${targetDir}`
-  );
+    output.success(MESSAGES.skillInstalled);
+  } catch (error) {
+    removePath(project.targetPath);
 
-  showNextSteps(
-    projectName,
-    options
-  );
+    if (isCliError(error)) {
+      throw error;
+    }
+
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new CliError(
+      "E_CONFIG_FAILED",
+      MESSAGES.errors.configFailed("generated project", detail),
+      { cause: error }
+    );
+  }
+
+  output.info("");
+  output.info(MESSAGES.projectCreated);
+  output.nextSteps(project.projectPath, packageManager);
+
+  return {
+    targetDir: project.targetPath,
+    project,
+    packageManager,
+  };
 }

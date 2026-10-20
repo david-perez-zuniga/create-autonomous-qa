@@ -1,4 +1,8 @@
+import type { PackageManagerId } from "../constants/package-managers.js";
+
 export interface GeneratorOptions {
-  bun?: boolean;
-  pnpm?: boolean;
+  packageManager?: PackageManagerId;
+  cwd?: string;
+  templateDir?: string;
+  debug?: boolean;
 }

@@ -1,6 +1,6 @@
 {
   "name": "create-autonomous-qa",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "CLI para generar proyectos de QA autónomo con Playwright y agentes IA",
   "type": "module",
   "bin": {

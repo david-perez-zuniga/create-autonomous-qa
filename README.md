@@ -86,6 +86,11 @@ my-project/
 │   └── skills/
 │       └── autonomous-qa/
 │           └── skill.md
+├── promps/
+│   ├── 01-create-specs.md
+│   ├── 02-create-task.md
+│   ├── 03-create-test.md
+│   └── 04-create-test-result.md
 ├── tests/
 │   └── example.spec.ts
 ├── pages/
@@ -120,6 +125,90 @@ pnpm test     # o npm test / bun run test
 ```
 
 > **Nota sobre Bun:** `bun test` usa el runner nativo de Bun y no es compatible con `@playwright/test`. Usa `bun run test` para ejecutar los tests de Playwright.
+
+## Flujo de QA Autónomo con Agentes de IA
+
+El proyecto generado incluye **4 prompts listos para usar** en `promps/` que guían a un agente de IA (como OpenCode) a través de todo el ciclo de vida de QA:
+
+### 1. Crear Especificaciones (`promps/01-create-specs.md`)
+
+Analiza el código de tu aplicación y genera especificaciones funcionales en `specs/`.
+
+```bash
+# Copia el contenido de promps/01-create-specs.md y pásalo a tu agente de IA
+# El agente leerá tu código y creará specs/*.md
+```
+
+**Salida:** `specs/autenticacion.md`, `specs/transferencias.md`, etc.
+
+---
+
+### 2. Crear Tareas de QA (`promps/02-create-task.md`)
+
+A partir de las specs, genera casos de prueba priorizados, deduplicados y con confidence score en `tasks/`.
+
+```bash
+# Copia promps/02-create-task.md y pásalo al agente
+# El agente leerá specs/ y creará tasks/AUTH-001.md, TRANS-001.md, etc.
+```
+
+**Salida:** `tasks/AUTH-001.md`, `tasks/TRANS-001.md` (con tipo, confidence score, pasos, resultado esperado).
+
+---
+
+### 3. Generar Tests Playwright (`promps/03-create-test.md`)
+
+Con specs + tasks, el agente genera código Playwright aplicando **Risk-Based Testing (RBT)**:
+
+- CRÍTICO → 100% cobertura
+- ALTO → 80% cobertura
+- MEDIO → 60% cobertura
+- BAJO → Solo Happy Path
+
+```bash
+# Copia promps/03-create-test.md y pásalo al agente
+# El agente creará pages/, fixtures/, helpers/ y tests/*.spec.ts
+```
+
+**Salida:** `pages/LoginPage.ts`, `fixtures/testData.ts`, `tests/autenticacion.spec.ts`, etc.
+
+---
+
+### 4. Analizar Resultados (`promps/04-create-test-result.md`)
+
+Tras ejecutar `pnpm test`, el agente analiza `qa-results/` y genera defectos deduplicados y métricas.
+
+```bash
+# Ejecuta los tests
+pnpm test
+
+# Copia promps/04-create-test-result.md y pásalo al agente
+# El agente leerá qa-results/ y creará qa-results/defects/BUG-*.md + metrics.json
+```
+
+**Salida:** `qa-results/defects/BUG-001.md`, `qa-results/analytics/metrics.json`
+
+---
+
+### Resumen del flujo completo
+
+```text
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  01 Specs       │────▶│  02 Tasks       │────▶│  03 Tests       │────▶│  04 Results     │
+│  (promps/01)    │     │  (promps/02)    │     │  (promps/03)    │     │  (promps/04)    │
+│  ▼              │     │  ▼              │     │  ▼              │     │  ▼              │
+│  specs/*.md     │     │  tasks/*.md     │     │  tests/*.spec.ts│     │  defects/BUG-*.md
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+     │                      │                      │                      │
+     │                      │                      │                      │
+     ▼                      ▼                      ▼                      ▼
+ Analiza código      Prioriza + deduplica    Genera Playwright    Analiza evidencias
+                     + confidence score      con RBT + POM        + genera métricas
+```
+
+> **Uso:** Cada archivo en `promps/` está diseñado para copiarse completo y pasárselo a tu agente de IA (OpenCode, Cursor, Copilot Chat, etc.). El agente ejecutará las instrucciones y generará los artefactos en los directorios correspondientes.
+
+---
 
 ## Desarrollo de esta CLI
 

@@ -71,24 +71,15 @@ const stats = [
             >
               Scaffold de QA autónomo en un comando
             </h1>
-            <p
-              class="max-w-xl text-pretty text-lg leading-relaxed text-slate-300"
-            >
-              <code class="font-mono text-indigo-300">create-autonomous-qa</code>
-              {" "}
-              genera proyectos de pruebas con Playwright, TypeScript y una skill
-              de 9 fases para agentes de IA. Estructura completa, package
-              manager incluido y cero configuración manual.
-            </p>
-          </div>
+            </div>
 
           <div class="flex flex-wrap items-center gap-3">
             <a
               href="#install"
               class="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-6 py-3 text-sm font-medium text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-indigo-400"
             >
-              Instalar con npx
-              <span aria-hidden="true">→</span>
+              Probar ahora
+              <span aria-hidden="true"></span>
             </a>
             <a
               href="https://github.com/david-perez-zuniga/create-autonomous-qa"
@@ -101,18 +92,6 @@ const stats = [
           </div>
 
           <dl class="grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
-            {
-              stats.map((stat) => (
-                <div class="flex flex-col gap-1">
-                  <dt class="font-mono text-2xl font-semibold text-white">
-                    {stat.value}
-                  </dt>
-                  <dd class="text-xs uppercase tracking-wider text-slate-400">
-                    {stat.label}
-                  </dd>
-                </div>
-              ))
-            }
           </dl>
         </div>
 
@@ -131,11 +110,6 @@ const stats = [
           <h2 class="text-3xl font-semibold text-white sm:text-4xl">
             Elige tu gestor de paquetes
           </h2>
-          <p class="max-w-2xl text-pretty text-lg text-slate-300">
-            Funciona igual con npm, pnpm, Bun o <code class="font-mono"
-              >npx</code
-            >. No necesitas instalación global.
-          </p>
         </div>
 
         <div class="grid gap-4 lg:grid-cols-2">
@@ -191,32 +165,6 @@ const stats = [
             ))
           }
         </div>
-
-        <div
-          class="rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl"
-        >
-          <h3 class="text-lg font-semibold text-white">Opciones de la CLI</h3>
-          <div
-            class="mt-5 grid gap-3 font-mono text-sm sm:grid-cols-2 lg:grid-cols-3"
-          >
-            {
-              [
-                { flag: "--pnpm", desc: "Usa pnpm (por defecto)" },
-                { flag: "--bun", desc: "Usa Bun" },
-                { flag: "--debug", desc: "Muestra stack traces" },
-                { flag: "--help", desc: "Muestra la ayuda" },
-                { flag: "--version", desc: "Muestra la versión" },
-                { flag: "<project-name>", desc: "Nombre del proyecto" },
-              ].map((opt) => (
-                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl border border-white/5 bg-black/20 px-4 py-3">
-                  <span class="shrink-0 text-indigo-300">{opt.flag}</span>
-                  <span class="hidden text-slate-500 sm:inline">—</span>
-                  <span class="text-slate-400">{opt.desc}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
       </section>
 
       <!-- FEATURES -->
@@ -229,10 +177,6 @@ const stats = [
           <h2 class="text-3xl font-semibold text-white sm:text-4xl">
             Todo lo que necesitas para empezar
           </h2>
-          <p class="max-w-3xl text-pretty text-lg text-slate-300">
-            De la estructura de carpetas a la skill de agentes: la CLI se
-            encarga del andamiaje completo.
-          </p>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => <Card {...feature} />)}
@@ -336,10 +280,6 @@ const stats = [
           <h2 class="text-3xl font-semibold text-white sm:text-4xl">
             Empieza tu QA autónomo hoy
           </h2>
-          <p class="max-w-2xl text-pretty text-lg text-slate-200">
-            Un comando y tienes el proyecto listo: estructura, configuración,
-            skill y próximos pasos.
-          </p>
         </div>
         <div class="relative flex w-full max-w-full flex-col items-center gap-4">
           <code
@@ -353,7 +293,7 @@ const stats = [
             class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-100"
           >
             Ver en npm
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
       </section>
@@ -378,9 +318,6 @@ const stats = [
             target="_blank"
             rel="noopener"
             class="transition hover:text-slate-200">npm</a
-          >
-          <a href="#top" class="transition hover:text-slate-200"
-            >Volver arriba ↑</a
           >
         </div>
       </footer>

@@ -30,27 +30,27 @@ No necesitas instalarlo globalmente. Puedes usarlo directamente con tu gestor de
 ### Con npm
 
 ```bash
-npm create autonomous-qa@latest my-project
+npm create autonomous-qa@latest my-project-qa
 ```
 
 ### Con pnpm
 
 ```bash
-pnpm create autonomous-qa my-project
+pnpm create autonomous-qa my-project-qa
 ```
 
 ### Con Bun
 
 ```bash
-bun create autonomous-qa my-project
+bun create autonomous-qa my-project-qa
 ```
 
 ### Con npx / pnpm dlx / bunx
 
 ```bash
-npx create-autonomous-qa my-project
-pnpm dlx create-autonomous-qa my-project
-bunx create-autonomous-qa my-project
+npx create-autonomous-qa my-project-qa
+pnpm dlx create-autonomous-qa my-project-qa
+bunx create-autonomous-qa my-project-qa
 ```
 
 ## Opciones
@@ -67,13 +67,13 @@ bunx create-autonomous-qa my-project
 
 ```bash
 # Generar con configuración por defecto (pnpm)
-create-autonomous-qa banking-qa
+create-autonomous-qa my-project-qa
 
 # Generar explícitamente con pnpm
-create-autonomous-qa banking-qa --pnpm
+create-autonomous-qa my-project-qa --pnpm
 
 # Generar con Bun
-create-autonomous-qa banking-qa --bun
+create-autonomous-qa my-project-qa --bun
 ```
 
 ## Estructura generada
@@ -81,7 +81,7 @@ create-autonomous-qa banking-qa --bun
 Al crear el proyecto se genera la siguiente estructura:
 
 ```text
-my-project/
+my-project-qa/
 ├── .opencode/
 │   └── skills/
 │       └── autonomous-qa/
@@ -119,7 +119,7 @@ my-project/
 Después de generar el proyecto:
 
 ```bash
-cd my-project
+cd my-project-qa
 pnpm install  # o npm install / bun install
 pnpm test     # o npm test / bun run test
 ```
